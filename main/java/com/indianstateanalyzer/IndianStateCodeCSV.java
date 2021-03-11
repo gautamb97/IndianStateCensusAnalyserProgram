@@ -3,8 +3,14 @@ package com.indianstateanalyzer;
 import com.opencsv.bean.CsvBindByName;
 
 public class IndianStateCodeCSV {
+    @CsvBindByName(column = "SrNo", required = true)
+    public int SrNo;
+
     @CsvBindByName(column = "State Name", required = true)
     public String state;
+
+    @CsvBindByName(column = "TIN", required = true)
+    public int TIN;
 
     @CsvBindByName(column = "StateCode", required = true)
     public String stateCode;
@@ -12,7 +18,9 @@ public class IndianStateCodeCSV {
     @Override
     public String toString() {
         return "IndianStateCodeCSV{" +
-                "state='" + state + '\'' +
+                "SrNo=" + SrNo +
+                ", state='" + state + '\'' +
+                ", TIN=" + TIN +
                 ", stateCode='" + stateCode + '\'' +
                 '}';
     }
