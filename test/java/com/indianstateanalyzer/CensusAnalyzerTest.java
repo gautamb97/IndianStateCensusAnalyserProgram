@@ -14,6 +14,7 @@ public class CensusAnalyzerTest {
     private static final String WRONG_HEADER_OF_CSV_FILE ="./IndiaStateCensusData1.csv";
     private static final String INDIAN_STATE_CODE_CSV_FILE_PATH = "C:/Users/hp/IdeaProjects/IndianStateCensusAnalyzerProgram";
     private static final String WRONG_STATE_CODE_CSV_FILE_TYPE ="./IndiaStateCode.pdf";
+    private static final String WRONG_STATE_CODE_CSV_FILE_DELIMITER ="./IndiaStateCode,csv";
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -102,6 +103,18 @@ public class CensusAnalyzerTest {
             censusAnalyser.loadIndianStateCode(WRONG_STATE_CODE_CSV_FILE_TYPE);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals("Wrong File Type",CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM,e.type);
+        }
+    }
+
+    @Test
+    public void givenIndianStateCodeData_WithWrongFileDelimiter_ShouldThrowException() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyser.loadIndianStateCode(WRONG_STATE_CODE_CSV_FILE_DELIMITER);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals("Wrong File Delimiter",CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM,e.type);
         }
     }
 }
